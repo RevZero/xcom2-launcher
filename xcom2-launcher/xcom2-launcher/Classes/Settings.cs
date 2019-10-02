@@ -26,23 +26,10 @@ namespace XCOM2Launcher
         {
             get
             {
-                if (_instance != null) return _instance;
-                try
-                {
-                    _instance = Settings.FromFile("settings.json");
-                }
-                catch (FileNotFoundException e)
-                {
-                    Log.Warn("settings.json not found", e);
-                    MessageBox.Show("Could not find file " + e.FileName, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (JsonSerializationException ex)
-                {
-                    Log.Error("Unable to parse settings.json", ex);
-                    MessageBox.Show(@"settings.json could not be read.\r\nPlease delete or rename that file and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return null;
-                }
-
+                if (_instance != null) 
+                    return _instance;
+                
+                _instance = FromFile("settings.json");
                 return _instance;
             }
         }
@@ -170,9 +157,21 @@ namespace XCOM2Launcher
                     var serializer = new JsonSerializer();
                     serializer.Converters.Add(new ModListConverter());
 
-                    settings = (Settings) serializer.Deserialize(reader, typeof(Settings));
+                    try 
+                    {
+                        settings = (Settings)serializer.Deserialize(reader, typeof(Settings));
+                    } 
+                    catch (NullReferenceException) 
+                    {
+                        settings = null;
+                    }
+
                 }
             }
+            
+            // If the Deserialize() failed, return immediately.
+            if (settings == null)
+                return null;
 
             // for backwards compatibility, convert obsolete Arguments string to individual list entries and set it to ""
             #pragma warning disable 612     // disable Obsolete warning for Arguments property

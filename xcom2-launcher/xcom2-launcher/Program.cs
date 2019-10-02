@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using JR.Utils.GUI.Forms;
+using Newtonsoft.Json;
 using Sentry;
 using Sentry.Protocol;
 using XCOM2Launcher.Classes;
@@ -245,32 +246,59 @@ namespace XCOM2Launcher
 
         public static Settings InitializeSettings()
         {
-            var firstRun = !File.Exists("settings.json");
+            Settings settings = null;
 
-            var settings = firstRun ? new Settings() : Settings.Instance;
-
-            // Logic behind this:
-            // If the field ShowUpgradeWarning doesn't exists in the loaded settings file; it will be initialized to its default value "true".
-            // In that case, an old incompatible settings version is assumed and we report a warning.
-            if (settings.ShowUpgradeWarning && !firstRun)
+            if (!File.Exists("settings.json")) 
             {
-                Log.Warn("Incompatible settings.json");
+                Log.Info("File 'settings.json' not found, restoring default settings.");
+                settings = new Settings();
+            } 
+            else 
+            {
+                Log.Info("Loading settings from 'settings.json'.");
 
-                MessageBoxManager.Cancel = "Exit";
-                MessageBoxManager.OK = "Continue";
-                MessageBoxManager.Register();
-                var choice = MessageBox.Show("This launcher version is NOT COMPATIBLE with the old 'settings.json' file.\n" +
-                                             "Stop NOW and launch the old version to export a profile of your mods INCLUDING GROUPS!\n" +
-                                             "Once that is done, move the old 'settings.json' file to a SAFE PLACE and then proceed.\n" +
-                                             "After loading, import the profile you saved to recover groups.\n\n" +
-                                             "If you are not ready to do this, click 'Exit' to leave with no changes.",
-                                             "WARNING!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                try {
+                    settings = Settings.Instance;
 
-                if (choice == DialogResult.Cancel)
+                    if (settings == null) {
+
+                    }
+                } catch (JsonSerializationException ex) {
+                    Log.Warn("Unable to parse settings.json", ex);
+                    MessageBox.Show("Failed to load settings from file 'settings.json'." + Environment.NewLine +
+                                    "If you made manual changes to the file, please check the formatting." +
+                                    "If the error persists, delete or rename the file to restore the default settings.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } catch (Exception ex) {
+                    Log.Warn("Failed to create Settings instance", ex);
+                    MessageBox.Show(ex.Message, "Failed to initialize settings", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                if (settings == null) {
                     Environment.Exit(0);
+                }
 
-                Log.Warn("User ignored incompatibility");
-                MessageBoxManager.Unregister();
+                // Logic behind this:
+                // If the field ShowUpgradeWarning doesn't exists in the loaded settings file; it will be initialized to its default value "true".
+                // In that case, an old incompatible settings version is assumed and we report a warning.
+                if (settings.ShowUpgradeWarning) {
+                    Log.Warn("Incompatible settings.json");
+
+                    MessageBoxManager.Cancel = "Exit";
+                    MessageBoxManager.OK = "Continue";
+                    MessageBoxManager.Register();
+                    var choice = MessageBox.Show("This launcher version is NOT COMPATIBLE with the old 'settings.json' file.\n" +
+                                                 "Stop NOW and launch the old version to export a profile of your mods INCLUDING GROUPS!\n" +
+                                                 "Once that is done, move the old 'settings.json' file to a SAFE PLACE and then proceed.\n" +
+                                                 "After loading, import the profile you saved to recover groups.\n\n" +
+                                                 "If you are not ready to do this, click 'Exit' to leave with no changes.",
+                        "WARNING!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+                    if (choice == DialogResult.Cancel)
+                        Environment.Exit(0);
+
+                    Log.Warn("User ignored incompatibility");
+                    MessageBoxManager.Unregister();
+                }
             }
 
             settings.ShowUpgradeWarning = false;
