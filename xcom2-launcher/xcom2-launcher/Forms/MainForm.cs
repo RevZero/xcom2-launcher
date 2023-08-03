@@ -676,9 +676,6 @@ namespace XCOM2Launcher.Forms
                 modinfo_info_DescriptionRichTextBox.Font = DefaultFont;
                 modinfo_info_DescriptionRichTextBox.Rtf = m.GetDescription(true);
             }
-
-            btnDescSave.Enabled = false;
-            btnDescUndo.Enabled = false;
         }
 
         private void UpdateDependencyInformation(ModEntry m)
@@ -707,6 +704,10 @@ namespace XCOM2Launcher.Forms
                 modinfo_info_InstalledTextBox.Clear();
                 modinfo_readme_RichTextBox.Clear();
                 modinfo_changelog_richtextbox.Clear();
+                modInfoNotesText.Clear();
+                modInfoNotesText.ReadOnly = true;
+                modInfoNotesSave.Enabled = false;
+                modInfoNotesUndo.Enabled = false;
                 UpdateModDescription(null);
                 modinfo_image_picturebox.ImageLocation = null;
                 modinfo_inspect_propertygrid.SelectedObject = null;
@@ -728,6 +729,10 @@ namespace XCOM2Launcher.Forms
             modinfo_info_AuthorTextBox.Text = m.Author;
             modinfo_info_DateCreatedTextBox.Text = m.DateCreated?.ToString() ?? "";
             modinfo_info_InstalledTextBox.Text = m.DateAdded?.ToString() ?? "";
+            modInfoNotesText.Text = m.Note;
+            modInfoNotesText.ReadOnly = false;
+            modInfoNotesSave.Enabled = false;
+            modInfoNotesUndo.Enabled = false;
             UpdateModDescription(m);
             UpdateModChangeLog(m);
             modinfo_readme_RichTextBox.Text = m.GetReadMe();
@@ -889,5 +894,35 @@ namespace XCOM2Launcher.Forms
         }
 
         #endregion
+
+        private void modInfoNotesSave_Click(object sender, EventArgs e)
+        {
+            if (CurrentMod != null)
+            {
+                CurrentMod.Note = modInfoNotesText.Text;
+            }
+
+            modInfoNotesSave.Enabled = false;
+            modInfoNotesUndo.Enabled = false;
+        }
+
+        private void SetModInfoNotes(string text)
+        {
+            modInfoNotesText.ResetText();
+            modInfoNotesText.AppendText(text ?? "");
+        }
+
+        private void modInfoNotesRevert_Click(object sender, EventArgs e)
+        {
+            SetModInfoNotes(CurrentMod?.Note);
+            modInfoNotesSave.Enabled = false;
+            modInfoNotesUndo.Enabled = false;
+        }
+
+        private void modInfoNotesText_TextChanged(object sender, EventArgs e)
+        {
+            modInfoNotesSave.Enabled = true;
+            modInfoNotesUndo.Enabled = true;
+        }
     }
 }

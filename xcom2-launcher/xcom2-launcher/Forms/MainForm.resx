@@ -142,7 +142,7 @@
   <data name="runWarOfTheChosenToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAADSxJREFUeF7t2nvw5WMdB/AHu7qXO7Oli1KZFFIUYoqhWiVRky4yZGRS022ampSR
+        wgAADsIBFShKgAAADSxJREFUeF7t2nvw5WMdB/AHu7qXO7Oli1KZFFIUYoqhWiVRky4yZGRS022ampSR
         GZlKTSZLsmklKhVpE0IUQu5ELuuui3T5g2h3/U7v15nznPme757V/nbP2Zt9Zt5zLr/neT6fz/tze57v
         +ZVVY9VYNRZrXFLKtMtL2efKUvZflogOe19Ryro9tZbOuKqUqdeWMuOBUubeX8rjyxL3lfLY1aUc2ill
         tZ564x9hfKPbSrnhnlI61wQho3NdcH1wQ3BjcFPwx+Dm4JbgTz3cGmRt5/YGfAZ/q/OssdYe9rKv/YEs
@@ -204,7 +204,7 @@
   <data name="runChallengeModeToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAADSxJREFUeF7t2nvw5WMdB/AHu7qXO7Oli1KZFFIUYoqhWiVRky4yZGRS022ampSR
+        wgAADsIBFShKgAAADSxJREFUeF7t2nvw5WMdB/AHu7qXO7Oli1KZFFIUYoqhWiVRky4yZGRS022ampSR
         GZlKTSZLsmklKhVpE0IUQu5ELuuui3T5g2h3/U7v15nznPme757V/nbP2Zt9Zt5zLr/neT6fz/tze57v
         +ZVVY9VYNRZrXFLKtMtL2efKUvZflogOe19Ryro9tZbOuKqUqdeWMuOBUubeX8rjyxL3lfLY1aUc2ill
         tZ564x9hfKPbSrnhnlI61wQho3NdcH1wQ3BjcFPwx+Dm4JbgTz3cGmRt5/YGfAZ/q/OssdYe9rKv/YEs
@@ -266,7 +266,7 @@
   <data name="runChimeraSquadToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAABVNJREFUSEt1VmtPU1kULdDSUuj7/UJoLKhQKG3pVHSKtkWeFahjBwbRKjojFFSQ
+        vwAADr8BOAVTJAAABVNJREFUSEt1VmtPU1kULdDSUuj7/UJoLKhQKG3pVHSKtkWeFahjBwbRKjojFFSQ
         Vloe8qiKQUYlo2HiaBxmzMRJHEPiN2LiB43G7ya+34k/Y825h3C1tn5Y6d377rPWvvuuc245ANLw7Nkz
         PH/+nOLly5cUr169wuvXr/HmzRu8ffsW7969w/v37/Hhwwd8/PgRnz59IkvTudIS4+PjkMvlUCgUUCqV
         FCqVioVarWah0WhYaLVaXLt2jVCk8qUEDKxWKw5UtOK/9nncaJnFn02ncbU+id/rpnHJN4mL2ycw7xnD
@@ -317,7 +317,7 @@ The "New" flag for a single mod will be removed when it is selected.</value>
   <data name="quickLaunchToolstripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
         YKxG6WBogkMZKgPNCEVJFBGdGETEvgwyO9DJE5syZw3PIlPEE9pgBCLZ5XvdMB8Ew8gXbl54nuf63dd9
         0OGSnwCahxbPRNPAPMw9Xpg6ZmF46kZZ0xSKzJPIrhpDWsVnpBhGkKx3nAX8Pv7z1zg8OoY/cITdn4fw
         bf/C0kYAN3Ma/w3gWfZL5kzTKBxjWyK2DftwI9tyMYCZKXbNHaD91bLYJrDXsYbrWfUKwJrPE9M2M1Oc

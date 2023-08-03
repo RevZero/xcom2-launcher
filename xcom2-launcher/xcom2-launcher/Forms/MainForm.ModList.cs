@@ -1067,7 +1067,7 @@ namespace XCOM2Launcher.Forms
                 if (installedWorkShopMods.Any())
                 {
                     unsubscribeItem = new ToolStripMenuItem("Unsubscribe", null, delegate { ConfirmUnsubscribeMods(installedWorkShopMods); });
-                    unsubscribeItem.ToolTipText = "Unsubscribes the selected the mod(s) from the Workshop, but keeps the mod(s) listed in AML, so you can re-subscribe later.";
+                    unsubscribeItem.ToolTipText = "Unsubscribes the selected mod(s) from the Workshop, but keeps the mod(s) listed in AML, so you can re-subscribe later.";
                 }
             }
 

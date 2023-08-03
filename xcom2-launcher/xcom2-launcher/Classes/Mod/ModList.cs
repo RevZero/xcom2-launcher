@@ -488,7 +488,9 @@ namespace XCOM2Launcher.Mod
                 var modInfo = new ModInfo(m.GetModInfoFile());
 
                 if (!m.ManualName || m.Name == "")
+                {
                     m.Name = modInfo.Title;
+                }
 
                 m.Description = modInfo.Description;
                 m.SetRequiresWOTC(modInfo.RequiresXPACK);
@@ -516,8 +518,10 @@ namespace XCOM2Launcher.Mod
 
             Log.Debug("Processing Workshop details for " + m.ID);
             
-            if (!m.ManualName)
+            if (!m.ManualName || m.Name == "")
+            {
                 m.Name = workshopDetails.m_rgchTitle;
+            }
 
             m.DateCreated = DateTimeOffset.FromUnixTimeSeconds(workshopDetails.m_rtimeCreated).DateTime;
             m.DateUpdated = DateTimeOffset.FromUnixTimeSeconds(workshopDetails.m_rtimeUpdated).DateTime;
@@ -530,10 +534,7 @@ namespace XCOM2Launcher.Mod
             if (m.Size < 0)
                 m.RealizeSize(Directory.EnumerateFiles(m.Path, "*", SearchOption.AllDirectories).Sum(fileName => new FileInfo(fileName).Length));
 
-            if (string.IsNullOrEmpty(m.Description))
-            {
-                m.Description = workshopDetails.m_rgchDescription;
-            }
+            m.Description = workshopDetails.m_rgchDescription;
 
             // Request mod author name if necessary.
             if (string.IsNullOrEmpty(m.Author) || m.Author == ModEntry.DEFAULT_AUTHOR_NAME)
